@@ -31,17 +31,7 @@ function showSolutionsMessage (a,b,c){
 
 //задача №2
 function getAvarageScore(data){
-    // const data = {
-    //     algebra: [],
-    //     geometry: [],
-    //     russian: [],
-    //     physics: [],
-    //     music: [],
-    //     english: [],
-    //     poetry: [],
-    //     chemistry: [],
-    //     french: []
-    // };
+
     const average = getAverageMark(data);
     
     function getAverageMark(marks){
