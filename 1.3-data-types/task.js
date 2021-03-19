@@ -3,26 +3,36 @@
 function calculateTotalMortgage(percent, contribution, amount, date) {
     // код для задачи №1 писать здесь
     let parsePercent = parseFloat(percent);
+    let monthlyPercent = parsePercent / 12 / 100;
     let parseContribution = parseFloat(contribution);
     let parseAmount = parseFloat(amount);
     
     let credit = parseAmount - parseContribution;
     
-    function monthsDiff(currentDate, creditEndDate) {
-        let creditEndDate = new Date(date).getTime();
-        let currentDate = Date.now();
-        months = (creditEndDate.getFullYear() - currentDate.getFullYear()) * 12;
+    function monthsDiff() {
+        let creditEndDate = new Date(date);
+        let currentDate = new Date();
+        let months = (creditEndDate.getFullYear() - currentDate.getFullYear()) * 12;
         months -= currentDate.getMonth();
         months += creditEndDate.getMonth();
         return months;
     }
 
-    let mountlyPayment = credit * (parsePercent +  parsePercent / ((1 + parsePercent) ** monthsDiff() - 1));
-    let totalAmount = (parseContribution + (mountlyPayment * monthsDiff()));
-    totalAmount.toFixed(2);
+    // function monthsDiff() {
+    //     let creditEndDate = new Date(date);
+    //     let currentDate = new Date();
+    //     let dateDiff = (creditEndDate - currentDate);
+
+    //     months -= currentDate.getMonth();
+    //     months += creditEndDate.getMonth();
+    //     return months;
+    // }
+
+    let mountlyPayment = credit * (monthlyPercent +  monthlyPercent / (((1 + monthlyPercent) ** monthsDiff()) - 1));
+    let totalAmount = ((mountlyPayment * monthsDiff()));
     
-    console.log(totalAmount);
-    return totalAmount;
+    console.log(totalAmount.toFixed(2));
+    return Number(totalAmount.toFixed(2));
     // return totalAmount;
 }
 
